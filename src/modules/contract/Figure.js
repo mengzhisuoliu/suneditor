@@ -282,18 +282,18 @@ class Figure {
 		const cover = dom.query.getParentElement(element, 'FIGURE', 2);
 		const inlineCover = dom.query.getParentElement(element, 'SPAN', 2);
 		const anyCover = cover || inlineCover;
-		let target = dom.query.getParentElement(element, (current) => current.parentElement === anyCover, 0) || /** @type {HTMLElement} */ (element);
+		let target = dom.query.getParentElement(element, (current) => current.parentElement === anyCover, 0) || element;
 
 		// When image is wrapped by anchor, target becomes <a> instead of <img>
 		if (dom.check.isAnchor(target)) {
-			const imgEl = target.querySelector('img');
+			const imgEl = target.querySelector(':scope > img');
 			if (imgEl) {
 				target = imgEl;
 			}
 		}
 
 		return {
-			target,
+			target: /** @type {HTMLElement} */ (target),
 			container: dom.query.getParentElement(target, Figure.is, 3) || cover,
 			cover: cover,
 			inlineCover: dom.utils.hasClass(inlineCover, 'se-inline-component') ? /** @type {HTMLElement} */ (inlineCover) : null,
