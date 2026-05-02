@@ -4553,8 +4553,8 @@
 .sun-editor-editable[contenteditable='true'] .se-page-break::after {
 	content: '⎯⎯⎯⎯⎯⎯';
 	position: absolute;
-	top: 1px;
-	background: var(--se-main-background-color);
+	top: 0px;
+	background: transparent;
 	padding: 0 5px;
 	color: var(--se-doc-info-page-background-color);
 	font-size: var(--se-main-font-size);
