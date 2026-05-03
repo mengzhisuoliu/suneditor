@@ -63,7 +63,7 @@ function Constructor(editorTargets, options) {
 	/** --- carrier wrapper --------------------------------------------------------------- */
 	const editor_carrier_wrapper = dom.utils.createElement('DIV', { class: 'sun-editor sun-editor-carrier-wrapper sun-editor-common' + o.get('_themeClass') + (o.get('_rtl') ? ' se-rtl' : '') });
 	// menuTray
-	const menuTray = dom.utils.createElement('DIV', { class: 'se-menu-tray' });
+	const menuTray = dom.utils.createElement('DIV', { class: 'se-menu-tray', popover: 'manual' });
 	editor_carrier_wrapper.appendChild(menuTray);
 	// focus temp element
 	const focusTemp = /** @type {HTMLInputElement} */ (
@@ -80,7 +80,7 @@ function Constructor(editorTargets, options) {
 	editor_carrier_wrapper.appendChild(focusTemp);
 
 	// modal
-	const modal = dom.utils.createElement('DIV', { class: 'se-modal se-modal-area sun-editor-common' });
+	const modal = dom.utils.createElement('DIV', { class: 'se-modal se-modal-area sun-editor-common', popover: 'manual' });
 	const modal_back = dom.utils.createElement('DIV', { class: 'se-modal-back' });
 	const modal_inner = dom.utils.createElement('DIV', { class: 'se-modal-inner' });
 	modal.appendChild(modal_back);
@@ -88,7 +88,7 @@ function Constructor(editorTargets, options) {
 	editor_carrier_wrapper.appendChild(modal);
 
 	// alert
-	const alert = dom.utils.createElement('DIV', { class: 'se-alert se-modal-area sun-editor-common', style: 'display: none;' });
+	const alert = dom.utils.createElement('DIV', { class: 'se-alert se-modal-area sun-editor-common', style: 'display: none;', popover: 'manual' });
 	const alert_back = dom.utils.createElement('DIV', { class: 'se-modal-back' });
 	const alert_inner = dom.utils.createElement('DIV', { class: 'se-modal-inner' });
 	alert.appendChild(alert_back);
@@ -96,11 +96,13 @@ function Constructor(editorTargets, options) {
 	editor_carrier_wrapper.appendChild(alert);
 
 	// loding box, resizing back
-	editor_carrier_wrapper.appendChild(dom.utils.createElement('DIV', { class: 'se-back-wrapper' }));
-	editor_carrier_wrapper.appendChild(loadingBox.cloneNode(true));
+	editor_carrier_wrapper.appendChild(dom.utils.createElement('DIV', { class: 'se-back-wrapper', popover: 'manual' }));
+	const loadingBoxEl = /** @type {HTMLElement} */ (loadingBox.cloneNode(true));
+	loadingBoxEl.setAttribute('popover', 'manual');
+	editor_carrier_wrapper.appendChild(loadingBoxEl);
 
 	// drag cursor
-	const dragCursor = dom.utils.createElement('DIV', { class: 'se-drag-cursor' });
+	const dragCursor = dom.utils.createElement('DIV', { class: 'se-drag-cursor', popover: 'manual' });
 	editor_carrier_wrapper.appendChild(dragCursor);
 
 	// set carrier wrapper
